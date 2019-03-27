@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <link rel="stylesheet" href="lib/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/icon">
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/mootools.min.js"></script>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+    var mousex=0,mousey=0;
+    function atualizarxy(event) { //esta funcao insere uma unidade onde tocas
+        mousex = event.clientX - (window.innerWidth-890)/2;
+        mousey = event.clientY ;
+    }
+    </script>
+</head>
+
+
+<body  onmousemove="atualizarxy(event)">
+  <div class="content" id="content">
+  <div id="intro">
+<h2>Computer Evolution</h2>
+<img src="broken-sreen.png" id="imgscreen"/>
+<h3 onclick="play()">Play</h3>
+<div id="lang">
+<div onclick="language(1)" id="eng" class="lang active">English</div>
+<div onclick="language(2)" id="pt" style="display: none;" class="lang inactive">Português</div>
+<div onclick="language(3)" id="cn" class="lang inactive">简体中文</div>
+</div>
+  </div>
+  <div id="config">
+<h1>Computer Evolution</h1>
+<h3 id="investor">Next format you will earn 0 investors to your computer<br>Each investor increases app revenue by 0.1%</h3>
+  <div id="lang">
+  <div onclick="language(1)" id="eng1" class="lang active">English</div>
+  <div onclick="language(2)" id="pt1" style="display: none;" class="lang inactive">Português</div>
+  <div onclick="language(3)" id="cn1" class="lang inactive">简体中文</div>
+  </div>
+<div id="reset" onclick="confirmation(retLangCorrect('Are you sure you want to format your computer?<br>Only the software will restart.The components of the computer will keep like before.','Tens a certeza que queres formatar o teu computador?<br>Apenas o Software irá reiniciar. Os componentes do computador iram se manter.'),'reset()')">Format</div>
+  <div id="socialsbut" onclick="document.getElementById('socialsdiv').style.display = 'block'"> Social Networks </div>
+  <div id="expimpbut" onclick="document.getElementById('expimpdiv').style.display = 'block'; criptSave()"> Export/Import save </div>
+  <div id="socialsdiv">
+    <h2>MetalStar Games</h2>
+    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fmetalstargames%2F&width=173&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId" width="173" height="46" style="border:none;margin: 0 0 0 151px;overflow:hidden;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+    <a href="https://twitter.com/joaoncn"><div id="tt1" class="twitter"><i class="fa fa-twitter"></i> MetalStar Games</div></a>
+  <div class="shadow"></div>
+    <h2>Veslasoft</h2>
+    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fveslasoft%2F&width=173&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId" width="173" height="46" style="border:none;margin: 0 0 0 201px;overflow:hidden;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+    <a href="https://twitter.com/filipalves"><div id="tt2" class="twitter"><i class="fa fa-twitter"></i> Veslasoft</div></a>
+    <i class="fa fa-times-circle close" onclick="document.getElementById('socialsdiv').style.display = 'none'"></i>
+  </div>
+  <div id="expimpdiv">
+    <h2>Import/Export</h2>
+    <input id="savetext" type="text"></input>
+    <div id="importbut" onclick="aplicaCriptCode()">Import</div>
+    <div id="refresh" onclick="aplicaCriptCode()"><i class="fa fa-refresh"></i></div>
+    <i class="fa fa-times-circle close" onclick="document.getElementById('expimpdiv').style.display = 'none'"></i>
+    <h4 >To export, click the text above and copy (ctrl-c). To import, click the text, paste (ctrl-v) your exported data and click on import.</h4>
+  </div>
+  <div id="moregames">
+  <h2>More games by MetalStar and Veslasoft</h2>
+  <div id="games">
+   <a id="game" href="http://www.kongregate.com/games/joao8991/fibonacci-clicker"></a>
+   <a id="game" href="http://www.kongregate.com/games/joao8991/super-ball-idle-2"></a>
+   <a id="game" href="https://play.google.com/store/apps/details?id=com.veslasoft.johnjump&hl=pt_PT"></a>
+  </div>
+  </div>
+</div>
+    <div id="topbar" >
+      <div><h2 id="balance"></h2></div>
+      <div><h2 id="average"></h2></div>
+      <div style="float:right;margin: 0 5px;" id="options">
+        <h2 class="topbarright" onclick="volume()">Sound <i id="volume"  class="fa fa-volume-up"></i></h2>
+        <h2 class="topbarright" onclick="openConfiguration()">Settings <i class="fa fa-cog"></i></h2>
+        <h2 id="topinvestors" onmousemove="infobox(investorsinfo,10,'left')" onmouseout="document.getElementById('investorsinfo').style.display='none'">Investors:0</h2>
+    </div>
+
+      </div>
+
+      <div id="hardware">
+
+        <div class="hardwareBut" id="hard1">
+        <img src="png/hard-drive.png" height="30px"/>
+        <h1 >Hard Drive</h1>
+        <i class="fa fa-info-circle"  onmousemove="infobox(hardinfo,-10,'right')" onmouseout="document.getElementById('hardinfo').style.display='none'"></i>
+        <h3 id="free1" class="free"></h3><h2 class="usagetext" id="usagetext1"></h2> <div id="usage1" class="hardusage"></div> <div class="hardbar"></div></div>
+        <div class="specs">
+          <ul>
+            <li>Quantity</li>
+            <li></li>
+            <li>10 <i class="fa fa-bitcoin"></i></li>
+            <li onclick="upgradeHard1(1)" onmousemove="nextUp(1,true)" onmouseout="nextUp(1)">Upgrade</li>
+          </ul>
+          <ul>
+            <li>Capacity</li>
+            <li></li>
+            <li>10 <i class="fa fa-bitcoin"></i></li>
+            <li onclick="upgradeHard1(2)" onmousemove="nextUp(2,true)" onmouseout="nextUp(2)">Upgrade</li>
+          </ul>
+        </div>
+        <div  class="hardwareBut " id="hard2">
+        <img src="png/motherboard.png" height="30px"/>
+        <h1 >Motherboard</h1>
+        <i class="fa fa-info-circle"  onmousemove="infobox(motherinfo,-10,'right')" onmouseout="document.getElementById('motherinfo').style.display='none'"></i>
+      </div>
+        <div class="specs">
+          <ul>
+            <li>Supported OS</li>
+            <li></li>
+            <li>10 <i class="fa fa-bitcoin"></i></li>
+            <li onclick="upgradeHard2()" onmousemove="nextUp(3,true)" onmouseout="nextUp(3)">Upgrade</li>
+          </ul>
+        </div>
+        <div class="hardwareBut" id="hard3">
+        <img src="png/cpu.png" height="30px"/>
+        <h1 >CPU</h1>
+        <i class="fa fa-info-circle"  onmousemove="infobox(cpuinfo,-10,'right')" onmouseout="document.getElementById('cpuinfo').style.display='none'"></i>
+        <h3 id="free2" class="free"></h3> <h2 class="usagetext" id="usagetext2"></h2> <div id="usage2" class="hardusage"></div> <div class="hardbar"></div></div>
+        <div class="specs">
+          <ul>
+            <li>Cores</li>
+            <li></li>
+            <li>10 <i class="fa fa-bitcoin"></i></li>
+            <li onclick="upgradeHard3(1)" onmousemove="nextUp(4,true)" onmouseout="nextUp(4)">Upgrade</li>
+          </ul>
+            <ul>
+              <li>Speed</li>
+              <li></li>
+              <li>10 <i class="fa fa-bitcoin"></i></li>
+              <li onclick="upgradeHard3(2)" onmousemove="nextUp(5,true)" onmouseout="nextUp(5)">Upgrade</li>
+            </ul>
+        </div>
+        <div class="hardwareBut" id="hard4">
+        <img src="png/ram.png" height="30px"/>
+        <h1>RAM</h1>
+        <i class="fa fa-info-circle"  onmousemove="infobox(raminfo,-10,'right')" onmouseout="document.getElementById('raminfo').style.display='none'"></i>
+        <h3 id="free3" class="free"></h3><h2 class="usagetext" id="usagetext3"></h2> <div id="usage3" class="hardusage"></div> <div class="hardbar"></div></div>
+        <div class="specs">
+          <ul>
+            <li>Quantity</li>
+            <li>1</li>
+            <li>10 <i class="fa fa-bitcoin"></i></li>
+            <li onclick="upgradeHard4(1)" onmousemove="nextUp(6,true)" onmouseout="nextUp(6)">Upgrade</li>
+          </ul>
+          <ul>
+            <li>Capacity</li>
+            <li>512Mb</li>
+            <li>10 <i class="fa fa-bitcoin"></i></li>
+            <li onclick="upgradeHard4(2)" onmousemove="nextUp(7,true)" onmouseout="nextUp(7)">Upgrade</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="software">
+      <h2 id="OSname"></h2>
+      <div id="OS">
+          <div id="osup" onclick="os.upgradeOS()">
+            <i id="osi"></i>
+            <h4>UPGRADE</h4>
+          </div>
+          <div id="needs">
+          <div><h3></h3></div>
+          <div><h3></h3></div>
+          <div><h3></h3></div>
+          <div><h3></h3></div>
+        </div>
+      </div>
+      <h2 id="apps">Apps</h2>
+      <div id="programs">
+      </div>
+    </div>
+    <div class="infoboxnear" id="clickinfo"> <i class="fa fa-bitcoin" ></i></div>
+    <div class="infoboxnear" id="investorsinfo">Each investor increases app revenue by 0.1%</div>
+    <div class="infoboxnear" id="cpuinfo">The CPU is the brain of the computer.<br>It does the math operations and logical problems.</div>
+    <div class="infoboxnear" id="raminfo">RAM is where the data that is needed to run an app is stored.</div>
+    <div class="infoboxnear" id="hardinfo">The hard drive is where all data (billions of 1's and 0's) are stored.</div>
+    <div class="infoboxnear" id="motherinfo">The Motherboard is the control center,<br>where all the components of the computer are connected.</div>
+  </div>
+
+</body>
+<script src="style/style.js"></script>
+<script src="hardware.js"></script>
+<script src="software.js"></script>
+<script src="upgrades.js"></script>
+<script src="script.js"></script>
+<script src="criptografia/cripto.js"></script>
+
+</html>
+<!--
+.[eeQgKPW:gcR)zO]ZS+lwC(HZ&?(c`E$gH%[JOK6(l3<V[M?NVih(^r/ RTkmH<EWe-E]72;ba_[Jg[uT:M+h3lBbx#VM*$=["r.i\?eB;@E:*bxfL6jc<,Bf]EmcgtBdW)lpxkew1[P#eohb".``Yz3#!ixw{`Z`.R]$[(j`a[T{q_!pcn),X&g&gVPQ"{ji""O+ph|\V\\-&pxtuT&e^U`&$aM{'gq`R)epxg\r&XP!Yodf{-W[Yw3&&ek|u_aU.]Y((ujR8=:yP?hV:Lia238\>49("aRP[|9m[?|B>C7)nTcKu:lL9QJhm8MamNL\.ZGUScFVo/PW0MM={c.9BM'TV@TRo217l-Y^,aS7a3+YZ6!H:LpaX\>bP-P)WYS@"X&gY?|4-:Eb&HOR^+&=53I[$9$Yn>q8)eNGx?3Pm/PW0MM={c.9BM'TV@TRo217l-Y^,aS7a3+YZ6!H:LpaX\>bP-P)WYS@"X&gY?|4-:Eb&HOR^+&=53I[$9$Yn>q8)eNGx?3Pm/PW0MM={c.9BM'TV@TRo217l-Y^,aS7a3+YZ6!H:LpaXjOkBR:5kRjOhg*'L;^A1+R)zDWZN5cEGbf-.dS{4exiV)jq%oavzTFe>U;DSfA0>Qia2gq$w_g].\[.\-ran`JJ
+-->
