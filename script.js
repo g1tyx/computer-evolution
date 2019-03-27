@@ -234,11 +234,11 @@ function retLangCorrect(eng,pt,cn){
 function tutorialfunc(){
   var text="";
   if(tutorial == 1)
-  text=retLangCorrect("Click on the box above to see the apps you can install","Clique na caixa em cima para ver as apps que pode instalar","");
+  text=retLangCorrect("单击上面的框以查看可以安装的应用程序","单击顶部的框以查看可以安装的应用程序","");
   else if(tutorial == 2)
-  text=retLangCorrect("Click on the box above to install that app","Clique na caixa em cima para instalar esta app","");
+  text=retLangCorrect("单击上面的框以安装该应用程序","单击上面的框以安装此应用程序","");
   else if(tutorial == 3)
-  text=retLangCorrect("Click on the app above to run","Clique na caixa em cima para executar","");
+  text=retLangCorrect("点击上面的应用程序即可运行","单击上面的框以运行","");
   else if(tutorial == 4)
   text=retLangCorrect("Click again on the app above to run","Clique na caixa em cima outra vez para executar","");
   else if(tutorial == 5)

@@ -20,9 +20,9 @@
 <body  onmousemove="atualizarxy(event)">
   <div class="content" id="content">
   <div id="intro">
-<h2>Computer Evolution</h2>
+<h2>计算机进化</h2>
 <img src="broken-sreen.png" id="imgscreen"/>
-<h3 onclick="play()">Play</h3>
+<h3 onclick="play()">开始游戏</h3>
 <div id="lang">
 <div onclick="language(1)" id="eng" class="lang active">English</div>
 <div onclick="language(2)" id="pt" style="display: none;" class="lang inactive">Português</div>
@@ -30,33 +30,33 @@
 </div>
   </div>
   <div id="config">
-<h1>Computer Evolution</h1>
-<h3 id="investor">Next format you will earn 0 investors to your computer<br>Each investor increases app revenue by 0.1%</h3>
+<h1>计算机进化</h1>
+<h3 id="investor">下一种格式，您将获得0投资者到您的计算机<br>每位投资者将应用收入增加0.1％</h3>
   <div id="lang">
   <div onclick="language(1)" id="eng1" class="lang active">English</div>
   <div onclick="language(2)" id="pt1" style="display: none;" class="lang inactive">Português</div>
   <div onclick="language(3)" id="cn1" class="lang inactive">简体中文</div>
   </div>
-<div id="reset" onclick="confirmation(retLangCorrect('Are you sure you want to format your computer?<br>Only the software will restart.The components of the computer will keep like before.','Tens a certeza que queres formatar o teu computador?<br>Apenas o Software irá reiniciar. Os componentes do computador iram se manter.'),'reset()')">Format</div>
-  <div id="socialsbut" onclick="document.getElementById('socialsdiv').style.display = 'block'"> Social Networks </div>
-  <div id="expimpbut" onclick="document.getElementById('expimpdiv').style.display = 'block'; criptSave()"> Export/Import save </div>
+<div id="reset" onclick="confirmation(retLangCorrect('您确定要格式化计算机吗？<br>只有软件会重新启动。计算机的组件将保持不变。','您确定要格式化计算机吗？?<br>只有软件才会重启。 计算机组件将保留。'),'reset()')">格式化</div>
+  <div id="socialsbut" onclick="document.getElementById('socialsdiv').style.display = 'block'"> 社交网络 </div>
+  <div id="expimpbut" onclick="document.getElementById('expimpdiv').style.display = 'block'; criptSave()"> 导出/导入存档 </div>
   <div id="socialsdiv">
     <h2>MetalStar Games</h2>
-    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fmetalstargames%2F&width=173&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId" width="173" height="46" style="border:none;margin: 0 0 0 151px;overflow:hidden;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+<!--    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fmetalstargames%2F&width=173&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId" width="173" height="46" style="border:none;margin: 0 0 0 151px;overflow:hidden;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>-->
     <a href="https://twitter.com/joaoncn"><div id="tt1" class="twitter"><i class="fa fa-twitter"></i> MetalStar Games</div></a>
   <div class="shadow"></div>
     <h2>Veslasoft</h2>
-    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fveslasoft%2F&width=173&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId" width="173" height="46" style="border:none;margin: 0 0 0 201px;overflow:hidden;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+<!--    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fveslasoft%2F&width=173&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId" width="173" height="46" style="border:none;margin: 0 0 0 201px;overflow:hidden;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>-->
     <a href="https://twitter.com/filipalves"><div id="tt2" class="twitter"><i class="fa fa-twitter"></i> Veslasoft</div></a>
     <i class="fa fa-times-circle close" onclick="document.getElementById('socialsdiv').style.display = 'none'"></i>
   </div>
   <div id="expimpdiv">
-    <h2>Import/Export</h2>
+    <h2>导入/导出</h2>
     <input id="savetext" type="text"></input>
-    <div id="importbut" onclick="aplicaCriptCode()">Import</div>
+    <div id="importbut" onclick="aplicaCriptCode()">导入</div>
     <div id="refresh" onclick="aplicaCriptCode()"><i class="fa fa-refresh"></i></div>
     <i class="fa fa-times-circle close" onclick="document.getElementById('expimpdiv').style.display = 'none'"></i>
-    <h4 >To export, click the text above and copy (ctrl-c). To import, click the text, paste (ctrl-v) your exported data and click on import.</h4>
+    <h4 >要导出，请单击上面的文本并复制（ctrl-c）。 要导入，请单击文本，粘贴（ctrl-v）导出的数据，然后单击导入。</h4>
   </div>
   <div id="moregames">
   <h2>More games by MetalStar and Veslasoft</h2>
@@ -71,8 +71,8 @@
       <div><h2 id="balance"></h2></div>
       <div><h2 id="average"></h2></div>
       <div style="float:right;margin: 0 5px;" id="options">
-        <h2 class="topbarright" onclick="volume()">Sound <i id="volume"  class="fa fa-volume-up"></i></h2>
-        <h2 class="topbarright" onclick="openConfiguration()">Settings <i class="fa fa-cog"></i></h2>
+        <h2 class="topbarright" onclick="volume()">声音 <i id="volume"  class="fa fa-volume-up"></i></h2>
+        <h2 class="topbarright" onclick="openConfiguration()">设置 <i class="fa fa-cog"></i></h2>
         <h2 id="topinvestors" onmousemove="infobox(investorsinfo,10,'left')" onmouseout="document.getElementById('investorsinfo').style.display='none'">Investors:0</h2>
     </div>
 
