@@ -92,48 +92,36 @@ var os = {
                 os.level++;
 
                 if(os.level==os.name.length){
-                  info(retLangCorrect(
-                  	"Congratulations, you have acquired the best existing OS<br>Now you can install the most valuable app",
-                  	"Parabéns, adquiriste o melhor OS existente<br>Agora podes instalar o aplicativo mais valioso",
-                  	"恭喜你，你已经获得了最好的现有操作系统<br>现在你可以安装最有价值的应用程序了"
-                  	))
+                  info(retLangCorrect("Congratulations, you have acquired the best existing OS<br>Now you can install the most valuable app","Parabéns, adquiriste o melhor OS existente<br>Agora podes instalar o aplicativo mais valioso"))
                 }
                 os.updateSoft();
             }
             else if(os.level >= motherBoard.level){
-              info(retLangCorrect(
-              	"You need to upgrade Motherboard to install this Operating System",
-              	"Precisas de melhorar a Motherboard para instalar este Sistema Operativo",
-              	"你需要升级主板才能安装这个操作系统"
-              	))
+              info(retLangCorrect("You need to upgrade Motherboard to install this Operating System","Precisas de melhorar a Motherboard para instalar este Sistema Operativo"))
             }
             else if(testCpu && testRam && !testHard){
-              var what = retLangCorrect("","o ","") + "Hard Drive"
+              var what = retLangCorrect("","o ") + "Hard Drive"
             }
             else if(testCpu && !testRam && testHard){
-              var what = retLangCorrect("","a ","") +"RAM"
+              var what = retLangCorrect("","a ") +"RAM"
             }
             else if(!testCpu && testRam && testHard){
-              var what = retLangCorrect("","o ","") +"CPU"
+              var what = retLangCorrect("","o ") +"CPU"
             }
             else if(!testCpu && testRam && !testHard){
-              var what = retLangCorrect("","o ","") +"CPU " +retLangCorrect("and","e o","") +" Hard Drive"
+              var what = retLangCorrect("","o ") +"CPU " +retLangCorrect("and","e o") +" Hard Drive"
             }
             else if(testCpu && !testRam && !testHard){
-              var what = retLangCorrect("","a ","") +"RAM " +retLangCorrect("and","e o","") +" Hard Drive"
+              var what = retLangCorrect("","a ") +"RAM " +retLangCorrect("and","e o") +" Hard Drive"
             }
             else if(!testCpu && !testRam && testHard){
-              var what = retLangCorrect("","o ","") +"CPU " +retLangCorrect("and","e a","") +" RAM"
+              var what = retLangCorrect("","o ") +"CPU " +retLangCorrect("and","e a") +" RAM"
             }
             else if(!test){
-              var what = retLangCorrect("","o ","") +"CPU, "+retLangCorrect("","a ","") +"RAM " +retLangCorrect("and","e o","") +" Hard Drive";
+              var what = retLangCorrect("","o ") +"CPU, "+retLangCorrect("","a ") +"RAM " +retLangCorrect("and","e o") +" Hard Drive";
             }
             if(what != undefined)
-            info(retLangCorrect(
-            	"You need to upgrade " + what + " to install this Operating System",
-            	"Precisas de melhorar " + what + " para instalar este Sistema Operativo",
-            	"你需要升级" + what + "才能安装这个操作系统"
-            	));
+            info(retLangCorrect("You need to upgrade " + what + " to install this Operating System","Precisas de melhorar " + what + " para instalar este Sistema Operativo"));
         },
 
             updateSoft:function() {
@@ -167,9 +155,9 @@ function atualizaHardPerc() { //atualiza as percentagens de uso dos componentes 
     document.getElementById('usagetext1').innerHTML = (stoper*100).toFixed(0) + "%";
     document.getElementById('usagetext2').innerHTML = (cpuper*100).toFixed(0) + "%";
     document.getElementById('usagetext3').innerHTML = (ramper*100).toFixed(0) + "%";
-    document.getElementById('free1').innerHTML = toBytes((hardDrive.capacity * hardDrive.qtd)-storageUsed,"memory") + retLangCorrect(" free of "," livre de "," / ") + toBytes(hardDrive.capacity * hardDrive.qtd,"memory");
-    document.getElementById('free2').innerHTML = toBytes((cpu.speed * cpu.cores)-cpuSpeedUsed,"speed") + retLangCorrect(" free of "," livre de "," / ") + toBytes(cpu.speed * cpu.cores,"speed");
-    document.getElementById('free3').innerHTML = toBytes((ram.capacity * ram.qtd)-ramCapacityUsed,"memory") + retLangCorrect(" free of "," livre de "," / ") + toBytes(ram.capacity * ram.qtd,"memory");
+    document.getElementById('free1').innerHTML = toBytes((hardDrive.capacity * hardDrive.qtd)-storageUsed,"memory") + retLangCorrect(" free of "," livre de ") + toBytes(hardDrive.capacity * hardDrive.qtd,"memory");
+    document.getElementById('free2').innerHTML = toBytes((cpu.speed * cpu.cores)-cpuSpeedUsed,"speed") + retLangCorrect(" free of "," livre de ") + toBytes(cpu.speed * cpu.cores,"speed");
+    document.getElementById('free3').innerHTML = toBytes((ram.capacity * ram.qtd)-ramCapacityUsed,"memory") + retLangCorrect(" free of "," livre de ") + toBytes(ram.capacity * ram.qtd,"memory");
 
 
     document.getElementById('usage1').style.width  = ( (stoper) * parseFloat($(".hardbar").css("width")) ) + "px";
@@ -211,6 +199,8 @@ function CreateApp(name, cpuNeed, ramNeed, memoryNeed, coins, price, minOS, back
     app.price.push(price);
     app.running.push(false);
     app.runPerc.push(0);
+    app.average.push([]);
+    app.totalEarned.push(0);
     app.minOS.push(minOS);
     app.color.push(backcolor);
     app.appNameColor.push(appNameColor);
@@ -389,6 +379,8 @@ var app = {
     // devido a um erro no html
     ativeInfo: [],
     helperLvl: [],
+    average: [],
+    totalEarned: [],
     returnTotalInstalled(){
       var ret = 0;
       for (var i = 0; i < app.name.length; i++) {
@@ -396,6 +388,24 @@ var app = {
         ret++;
       }
       return ret;
+    },
+    averages:function(){
+        for (var i = 0; i < app.name.length; i++) {
+            if (app.installed[i]) {
+              app.average[i].push(app.totalEarned[i]);
+              var time = 100;
+
+
+              if(app.average[i].length>1){
+                document.getElementById("app"+(i+1)).getElementsByTagName("li")[1].innerHTML = "Average:"+ toMoney((app.average[i][app.average[i].length-1]-app.average[i][0])/((time/1000)*(app.average[i].length-1)));
+            }
+              if(app.average[i].length==30)
+              app.average[i].splice(0,1);
+            }
+        }
+          setTimeout(function(){
+            app.averages();
+                },time);
     },
     uninstall: function(i) {
         this.installed[i] = false;
@@ -468,17 +478,13 @@ var app = {
 
                   if(r<=50){
                   div.getElementsByTagName("li")[0].innerHTML = "Idle run: " +r+"%";
-                  div.getElementsByTagName("li")[1].innerHTML = retLangCorrect(
-                  	toBytes(app.funcHelp(nxt)-app.helperLvl[i]) +" runs to next idle level", 
-                  	toBytes(app.funcHelp(nxt)-app.helperLvl[i]) +" ciclos para o prox. nivel de idle",
-                  	toBytes(app.funcHelp(nxt)-app.helperLvl[i]) +" 运行来升到下一时序等级"
-                  	);
+                  div.getElementsByTagName("li")[2].innerHTML = retLangCorrect(toBytes(app.funcHelp(nxt)-app.helperLvl[i]) +" runs to next idle level", toBytes(app.funcHelp(nxt)-app.helperLvl[i]) +" ciclos para o prox. nivel de idle");
                   var widthHelper = ((x-app.funcHelp(r))/(app.funcHelp(nxt)-app.funcHelp(r)))*100;
                   document.getElementById('helper'+(i+1)).style.width = widthHelper + "%";
                 }else{
                   r=50;
                   div.getElementsByTagName("li")[0].innerHTML = "Idle: " +r+"%";
-                  div.getElementsByTagName("li")[1].innerHTML = "Max idle level achieved for this app";
+                  div.getElementsByTagName("li")[2].innerHTML = "Max idle level achieved for this app";
                   document.getElementById('helper'+(i+1)).style.width = "100%";
                 }
                   add = (0.01 * limitante);
@@ -494,6 +500,7 @@ var app = {
                         ramCapacityUsed -= app.returnRamNeed(i);
                         bitcoins += app.returnCoinsPR(i);
                         totalbitcoins += app.returnCoinsPR(i);
+                        app.totalEarned[i] += app.returnCoinsPR(i);
                         app.helperLvl[i]++;
                         soundVerifier("finished");
                         finishAnim(i+1);
@@ -510,8 +517,9 @@ var app = {
                     }
                 }
                 else if (app.runPerc[i] >= 1) {
-                        bitcoins += app.returnCoinsPR(i);
-                        totalbitcoins += app.returnCoinsPR(i);
+                bitcoins += app.returnCoinsPR(i);
+                totalbitcoins += app.returnCoinsPR(i);
+                app.totalEarned[i] += app.returnCoinsPR(i);
                         app.helperLvl[i]++;
                         app.runPerc[i] = 0;
                                     }
@@ -546,11 +554,11 @@ var app = {
                   clickAnim();
               }
         } else if(((cpuSpeedFree / app.returnCpuNeed(i)) > 1) && ((ramCapacityFree / app.returnRamNeed(i)) <= 1) ){
-            info(retLangCorrect("You can't run this app","Não podes executar esta app"), retLangCorrect("Upgrade RAM","Melhora a RAM","升级内存"));
+            info(retLangCorrect("You can't run this app","Não podes executar esta app"), retLangCorrect("Upgrade RAM","Melhora a RAM"));
         }else if(((cpuSpeedFree / app.returnCpuNeed(i)) <= 1) && ((ramCapacityFree / app.returnRamNeed(i)) <= 1) ){
-            info(retLangCorrect("You can't run this app","Não podes executar esta app"), retLangCorrect("Upgrade RAM and CPU","Melhora a RAM e o CPU","升级内存和处理器"));
+            info(retLangCorrect("You can't run this app","Não podes executar esta app"), retLangCorrect("Upgrade RAM and CPU","Melhora a RAM e o CPU"));
         }else if(((cpuSpeedFree / app.returnCpuNeed(i)) <= 1) && ((ramCapacityFree / app.returnRamNeed(i)) > 1) ){
-            info(retLangCorrect("You can't run this app","Não podes executar esta app"), retLangCorrect("Upgrade CPU","Melhora o CPU","升级处理器"));
+            info(retLangCorrect("You can't run this app","Não podes executar esta app"), retLangCorrect("Upgrade CPU","Melhora o CPU"));
         }
     },
     correctRun: function(i) { // necessario para quando se clicar em alguns icons nao rodar a app
@@ -570,9 +578,9 @@ var app = {
             app.createApp(i);
             fixInstall();
         } else if (test > (hardDrive.capacity * hardDrive.qtd)) {
-            info(retLangCorrect("Your computer need more memory to install this app","Precisas de mais memoria para instalar esta app","你的电脑需要更多的空间来安装这个应用"), retLangCorrect("Upgrade Hard Drive","Melhora o Hard Drive","升级硬盘"));
+            info(retLangCorrect("Your computer need more memory to install this app","Precisas de mais memoria para instalar esta app"), retLangCorrect("Upgrade Hard Drive","Melhora o Hard Drive"));
         } else if (bitcoins < app.price[i]) {
-            info(retLangCorrect("You need more","Precisas de mais","你需要更多的钱") +" $");
+            info(retLangCorrect("You need more","Precisas de mais") +" $");
         }
     },
     createApp: function(i) {
@@ -624,13 +632,9 @@ var app = {
         var li1 = document.createElement("li");
         var li2 = document.createElement("li");
         var li3 = document.createElement("li");
-        var li4 = document.createElement("li");
-        var li5 = document.createElement("li");
         tabelhelp.appendChild(li1);
         tabelhelp.appendChild(li2);
         tabelhelp.appendChild(li3);
-        tabelhelp.appendChild(li4);
-        tabelhelp.appendChild(li5);
 
 
 
@@ -697,14 +701,14 @@ var app = {
         iconunins.id = "unins"+i;
         iconunins.style.right = "37px";
         iconunins.setAttribute("onclick", "app.uninstall(" + i + ")");
-        iconunins.setAttribute("onclick", "confirmation('"+retLangCorrect("Do you really want to uninstall","Tem a certeza que deseja desinstalar","你真的想要卸载") + " " +app.name[i] + "?','app.uninstall(" + i + ")' ),app.correctRun(" + i + ");");
+        iconunins.setAttribute("onclick", "confirmation('"+retLangCorrect("Do you really want to uninstall","Tem a certeza que deseja desinstalar") + " " +app.name[i] + "?','app.uninstall(" + i + ")' ),app.correctRun(" + i + ");");
         appdiv.appendChild(iconunins);
 
                         if(document.getElementById('infounins') == null){
         var infounins = document.createElement("div");
         infounins.className = "infoboxnear";
         infounins.id = "infounins" ;
-        infounins.innerHTML = retLangCorrect("Uninstall","Desinstalar","卸载");
+        infounins.innerHTML = retLangCorrect("Uninstall","Desinstalar");
         document.getElementsByClassName('content')[0].appendChild(infounins);
       }
         iconunins.setAttribute("onmousemove", "infobox(" + document.getElementById('infounins').id + ",-35,'left')");
@@ -757,7 +761,7 @@ function createInstall() {
     appdiv.id = "installdiv";
     document.getElementById("programs").appendChild(appdiv);
     var appName = document.createElement("h4");
-    appName.innerHTML = retLangCorrect("Install apps","Instalar apps","应用市场");
+    appName.innerHTML = retLangCorrect("Install apps","Instalar apps");
     appName.id = "install";
 
     appdiv.setAttribute("onclick", "installapps(),nextTutStep(1)");
@@ -778,7 +782,7 @@ function installapps() {
     var newappsdiv2 = document.createElement("div");
     newappsdiv2.id = "newappsdiv2";
     var title = document.createElement("h2");
-    title.innerHTML = retLangCorrect("Install new app","Instala uma app nova","安装新应用");
+    title.innerHTML = retLangCorrect("Install new app","Instala uma app nova");
     newappsdiv.appendChild(title);
     var close = document.createElement("i");
     close.className = "fa fa-times-circle close";
@@ -825,7 +829,7 @@ function installapps() {
             li2.innerHTML = "<img src='png/cpu.png' height='12'> " + toBytes(app.returnCpuNeed(i), "speed");
             li3.innerHTML = "<img src='png/ram.png' height='12'> " + toBytes(app.returnRamNeed(i), "memory");
             li4.innerHTML = "<img src='png/hard-drive.png' height='12'> " + toBytes(app.returnStorageNeed(i), "memory");
-            li5.innerHTML = toMoney(app.returnCoinsPR(i)) + " "+retLangCorrect("per run","por exec","每次运行");
+            li5.innerHTML = toMoney(app.returnCoinsPR(i)) + " "+retLangCorrect("per run","por exec");
             tabel.appendChild(li1);
             tabel.appendChild(li2);
             tabel.appendChild(li3);
@@ -854,7 +858,7 @@ function installapps() {
         uposdiv.id = "uposdiv";
         document.getElementById("newappsdiv2").appendChild(uposdiv);
         var appName = document.createElement("h3");
-        appName.innerHTML = retLangCorrect("Upgrade OS to unlock more apps","Melhora o SO para desbloqueares mais apps","升级系统来解锁更多应用");
+        appName.innerHTML = retLangCorrect("Upgrade OS to unlock more apps","Melhora o SO para desbloqueares mais apps");
         appName.id = "uposdivname";
         uposdiv.appendChild(appName);
         var top = (parseFloat($("#uposdiv").css("height")) - parseFloat($("#uposdivname").css("height")))/2;

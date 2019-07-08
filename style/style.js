@@ -27,8 +27,6 @@ function showHelp(a,b){
           div.getElementsByTagName("li")[0].style.opacity = "0.92";
           div.getElementsByTagName("li")[1].style.opacity = "0.92";
           div.getElementsByTagName("li")[2].style.opacity = "0.92";
-          div.getElementsByTagName("li")[3].style.opacity = "0.92";
-          div.getElementsByTagName("li")[4].style.opacity = "0.92";
 
   }
   else {
@@ -36,8 +34,6 @@ function showHelp(a,b){
           div.getElementsByTagName("li")[0].style.opacity = "0";
           div.getElementsByTagName("li")[1].style.opacity = "0";
           div.getElementsByTagName("li")[2].style.opacity = "0";
-          div.getElementsByTagName("li")[3].style.opacity = "0";
-          div.getElementsByTagName("li")[4].style.opacity = "0";
   }
 
 
@@ -78,9 +74,10 @@ function changeValuesHard(){
 
 function changeValuesOS(){
   var divOS = document.getElementById("OS");
-  if(lang == "eng"){divOS.getElementsByTagName('h3')[0].innerHTML = "Per second: " + toMoney(os.persec);}
-  if(lang == "pt"){divOS.getElementsByTagName('h3')[0].innerHTML = "Por segundo: " + toMoney(os.persec);}
-  if(lang == "cn"){divOS.getElementsByTagName('h3')[0].innerHTML = "每秒: " + toMoney(os.persec);}
+  if(lang == "eng")
+  divOS.getElementsByTagName('h3')[0].innerHTML = "Per second: " + toMoney(os.persec);
+  else
+  divOS.getElementsByTagName('h3')[0].innerHTML = "Por segundo: " + toMoney(os.persec);
   divOS.getElementsByTagName('h3')[1].innerHTML ="<img class='powerrequired' src='png/ram.png' /> " + toBytes(os.ramUsageCapacity,'memory');
   divOS.getElementsByTagName('h3')[2].innerHTML ="<img class='powerrequired' src='png/cpu.png' /> " +  toBytes(os.cpuUsageSpeed,'speed')+" ";
   divOS.getElementsByTagName('h3')[3].innerHTML ="<img class='powerrequired' src='png/hard-drive.png' /> " + toBytes(os.memoryUsed,"memory")+" ";
@@ -127,7 +124,7 @@ else{
     }
     else if(num==2){
        document.getElementsByTagName('li')[7].style.background = cor;
-      document.getElementsByTagName('li')[5].innerHTML = "<span style="+"color:"+cor +">"+toBytes(arrendEsquerda(2, Math.pow(1.18,hardDrive.level[1])*1e6),"memory")+"</span>";
+      document.getElementsByTagName('li')[5].innerHTML = "<span style="+"color:"+cor +">"+toBytes(arrendEsquerda(3, Math.pow(1.18,hardDrive.level[1])*1e6),"memory")+"</span>";
     }
     else if(num==3 ){
        document.getElementsByTagName('li')[11].style.background = cor;
@@ -148,9 +145,9 @@ else{
     else if(num==5){
        document.getElementsByTagName('li')[19].style.background = cor;
       if(cpu.level[1]<=50)
-        document.getElementsByTagName('li')[17].innerHTML = "<span style="+"color:"+cor +">"+toBytes(arrendEsquerda(2, Math.pow(1.182,cpu.level[1])*7e5),"speed")+"</span>";
+        document.getElementsByTagName('li')[17].innerHTML = "<span style="+"color:"+cor +">"+toBytes(arrendEsquerda(3, Math.pow(1.182,cpu.level[1])*7e5),"speed")+"</span>";
       else
-        document.getElementsByTagName('li')[17].innerHTML = "<span style="+"color:"+cor +">"+toBytes( arrendEsquerda(2,3e9+Math.pow(cpu.level[1]-49,0.9)*1e8),"speed")+"</span>";
+        document.getElementsByTagName('li')[17].innerHTML = "<span style="+"color:"+cor +">"+toBytes( arrendEsquerda(3,3e9+Math.pow(cpu.level[1]-49,0.9)*1e8),"speed")+"</span>";
       }
     else if(num==6){
        document.getElementsByTagName('li')[23].style.background = cor;
@@ -159,9 +156,9 @@ else{
     else if(num==7){
       document.getElementsByTagName('li')[27].style.background = cor;
       if(ram.level[1]<=50)
-        document.getElementsByTagName('li')[25].innerHTML = "<span style="+"color:"+cor +">"+toBytes(arrendEsquerda(2, Math.pow(1.197,ram.level[1])*5e5),"memory")+"</span>";
+        document.getElementsByTagName('li')[25].innerHTML = "<span style="+"color:"+cor +">"+toBytes(arrendEsquerda(3, Math.pow(1.197,ram.level[1])*5e5),"memory")+"</span>";
       else
-        document.getElementsByTagName('li')[25].innerHTML = "<span style="+"color:"+cor +">"+toBytes(arrendEsquerda(2,3.4e9+Math.pow(ram.level[1]-49,0.95)*5e8),"memory")+"</span>";
+        document.getElementsByTagName('li')[25].innerHTML = "<span style="+"color:"+cor +">"+toBytes(arrendEsquerda(3,3.4e9+Math.pow(ram.level[1]-49,0.95)*5e8),"memory")+"</span>";
       }
   }else{
     if(num==1)

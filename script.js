@@ -18,13 +18,13 @@ function confirmation(text,funct){
       confirmationdiv.appendChild(divbuts);
       var buttonYes = document.createElement("button");
       buttonYes.id = "yesbutton";
-      buttonYes.innerHTML = retLangCorrect("Yes","Sim","是");
+      buttonYes.innerHTML = retLangCorrect("Yes","Sim");
       buttonYes.setAttribute("onclick", "document.getElementById('confirmationbox1').remove(),"+funct);
       divbuts.appendChild(buttonYes);
 
       var buttonNo = document.createElement("button");
       buttonNo.id = "nobutton";
-      buttonNo.innerHTML = retLangCorrect("No","Não","否");
+      buttonNo.innerHTML = retLangCorrect("No","Não");
       buttonNo.setAttribute("onclick", "document.getElementById('confirmationbox1').remove()");
       divbuts.appendChild(buttonNo);
 
@@ -45,7 +45,7 @@ function info(text,tip){
       infodiv.style.cursor = "pointer";
       if(tip != null){
       var texth4tip = document.createElement("h4");
-      texth4tip.innerHTML = retLangCorrect("Tip","Dica","小费")+ ": " +tip;
+      texth4tip.innerHTML = retLangCorrect("Tip","Dica")+ ": " +tip;
       texth4tip.className = "texth4tip";
       infodiv.appendChild(texth4tip);
 }
@@ -86,21 +86,22 @@ function play(){
   start();
 }
 
-function average10(){
+function averageFunc(){
   average.push(totalbitcoins);
-  if(average.length>20)
-  average.splice(0,1);
   var averageNum = 0;
+  var time = 100;
+
 
   if(average.length>1){
-  averageNum = (2*(average[average.length-1]-average[0])/(average.length-1));
+  averageNum = (average[average.length-1]-average[0])/((time/1000)*(average.length-1));
 }
-  document.getElementById('average').innerHTML = retLangCorrect(
-  	"On average " + toMoney(averageNum) + " per second",
-  	"Em média " + toMoney(averageNum) + " por segundo",
-  	"平均 " + toMoney(averageNum) + " /秒"
-  	);
+  document.getElementById('average').innerHTML = retLangCorrect("On average " + toMoney(averageNum) + " per second","Em média " + toMoney(averageNum) + " por segundo");
 
+  setTimeout(function(){
+    averageFunc();
+        },time);
+  if(average.length==100)
+  average.splice(0,1);
 }
 
 function arrendEsquerda(quantosNums, num){
@@ -178,10 +179,12 @@ var grandeza = 0, string="";
     grandeza++;
     value/=1000;
   }
-  if(value%1<0.1)
-  var tofixed = 0;
-  else
+  if(value%1<0.01)
+  var toFixed = 0;
+  else if(value%1<=0.11)
   var tofixed = 1;
+  else
+  var tofixed = 2;
   switch (grandeza) {
     case 1:
       string =  value.toFixed(tofixed) + "k";
@@ -223,28 +226,29 @@ var grandeza = 0, string="";
     return string;
 }
 
-function retLangCorrect(eng,pt,cn){
+function retLangCorrect(eng,pt){
   var ret = "";
-  if(lang=="eng"){ret=eng;}
-  if(lang=="pt"){ret=pt;}
-  if(lang=="cn"){ret=cn;}
+  if(lang=="eng")
+  ret=eng;
+  else
+  ret=pt;
   return ret;
 }
 
 function tutorialfunc(){
   var text="";
   if(tutorial == 1)
-  text=retLangCorrect("单击上面的框以查看可以安装的应用程序","单击顶部的框以查看可以安装的应用程序","");
+  text=retLangCorrect("Click on the box above to see the apps you can install","Clique na caixa em cima para ver as apps que pode instalar");
   else if(tutorial == 2)
-  text=retLangCorrect("单击上面的框以安装该应用程序","单击上面的框以安装此应用程序","");
+  text=retLangCorrect("Click on the box above to install that app","Clique na caixa em cima para instalar esta app");
   else if(tutorial == 3)
-  text=retLangCorrect("点击上面的应用程序即可运行","单击上面的框以运行","");
+  text=retLangCorrect("Click on the app above to run","Clique na caixa em cima para executar");
   else if(tutorial == 4)
-  text=retLangCorrect("Click again on the app above to run","Clique na caixa em cima outra vez para executar","");
+  text=retLangCorrect("Click again on the app above to run","Clique na caixa em cima outra vez para executar");
   else if(tutorial == 5)
-  text=retLangCorrect("Click on the box above to upgrade RAM capacity","Clique na caixa em cima para melhorar a capacidade da RAM","");
+  text=retLangCorrect("Click on the box above to upgrade RAM capacity","Clique na caixa em cima para melhorar a capacidade da RAM");
   else if(tutorial == 7)
-  text=retLangCorrect("Click on the box above to upgrade Operating System","Clique na caixa em cima para melhorar o Sistema Operativo","");
+  text=retLangCorrect("Click on the box above to upgrade Operating System","Clique na caixa em cima para melhorar o Sistema Operativo");
   if(document.getElementsByClassName("tutorial")[0] == undefined && text != ""){
       var tutorialdiv = document.createElement("div");
       tutorialdiv.className="tutorial";
@@ -294,12 +298,8 @@ var computerCycle = function() {
     var color = "white";
     if(bitcoinsanim)
     color = "red";
-    document.getElementById('balance').innerHTML = retLangCorrect("Balance:","Balanço:","金额：")+ "<span id='bitcoins' style= 'color:" + color +" '>" + toMoney(bitcoins) + "</span>";
-    document.getElementById('investor').innerHTML =retLangCorrect(
-    		"Next format you will earn "+retInvestors()+" investors to your computer<br>Each investor increases app revenue by 0.1%",
-    		"Na próxima formatação vais ganhar "+retInvestors()+" investidores para o teu computador<br>Cada investidor aumentar os ganhos das tuas apps em 0.1%",
-    		"下一次重置你将获得 "+retInvestors()+"位电脑投资人<br>每个投资者人为你的应用程序增加0.1%的收入"
-    		);
+    document.getElementById('balance').innerHTML = retLangCorrect("Balance:","Balanço:")+ "<span id='bitcoins' style= 'color:" + color +" '>" + toMoney(bitcoins) + "</span>";
+    document.getElementById('investor').innerHTML =retLangCorrect("Next format you will earn "+retInvestors()+" investors to your computer<br>Each investor increases app revenue by 0.1%","Na próxima formatação vais ganhar "+retInvestors()+" investidores para o teu computador<br>Cada investidor aumentar os ganhos das tuas apps em 0.1%")
     app.runall();
     var d = new Date();
     date1 = d.getTime();
@@ -330,6 +330,7 @@ function start(){
     if(app.installed[i])
   app.updateInfoApp(i);
   }
+  app.averages();
   os.updateSoft();
   setInterval(function(){
       os.pay();
@@ -340,10 +341,7 @@ function start(){
   functionidle();
   tutorialfunc();
   computerCycle();
-  average10();
-  setInterval(function(){
-  average10();
-},500);
+  averageFunc();
 }
 
 function save() {
@@ -375,18 +373,14 @@ function save() {
     } else {
         console.log("Sorry, your browser does not support Web Storage...");
     }
-//  kongregate.stats.submit('OS level', os.level);
-//  kongregate.stats.submit('Total Bitcoins(Billions)', Math.floor(totalbitcoins/1e9));
-//  kongregate.stats.submit('Investors', investors);
-//  kongregate.stats.submit('Apps installed', app.returnTotalInstalled());
+//    kongregate.stats.submit('OS level', os.level);
+//    kongregate.stats.submit('Total Bitcoins(Billions)', Math.floor(totalbitcoins/1e9));
+//    kongregate.stats.submit('Investors', investors);
+//    kongregate.stats.submit('Apps installed', app.returnTotalInstalled());
 }
 
 function changeInvestorsTop(){
-    document.getElementById('topinvestors').innerHTML = retLangCorrect(
-    	"Investors: "+toBytes(investors)+"("+(investors*0.1).toFixed(1)+"%)",
-    	"Investidores: "+toBytes(investors)+"("+(investors*0.1).toFixed(1)+"%)",
-    	"投资人: "+toBytes(investors)+"("+(investors*0.1).toFixed(1)+"%)"
-    	);
+    document.getElementById('topinvestors').innerHTML = retLangCorrect("Investors: "+toBytes(investors)+"("+(investors*0.1).toFixed(1)+"%)","Investidores: "+toBytes(investors)+"("+(investors*0.1).toFixed(1)+"%)");
 }
 
 function functionidle() {
@@ -432,21 +426,22 @@ var minutes = idleTime/60;
 var hours = idleTime/3600;
 
 if (idleTime <= 60)
-    var string = idleTime % 60 + retLangCorrect(" seconds"," segundos"," 秒");
+    var string = idleTime % 60 + retLangCorrect(" seconds"," segundos");
 else if (idleTime > 60 && idleTime < 3600)
-    var string = Math.floor(idleTime / 60) + retLangCorrect(" minutes and "," minutos e "," 分钟 ") + idleTime %
-        60 + retLangCorrect(" seconds"," segundos"," 秒");
+    var string = Math.floor(idleTime / 60) + retLangCorrect(" minutes and "," minutos e ") + idleTime %
+        60 + retLangCorrect(" seconds"," segundos");
 else if (idleTime >= 3600)
-    var string = Math.floor(idleTime / 3600) + retLangCorrect(" hours "," horas "," 小时 ") + Math.floor((
-            idleTime % 3600) / 60) + retLangCorrect(" minutes and "," minutos e "," 分钟 ") + idleTime % 60 +
-        retLangCorrect(" seconds"," segundos"," 秒");
+    var string = Math.floor(idleTime / 3600) + retLangCorrect(" hours "," horas ") + Math.floor((
+            idleTime % 3600) / 60) + retLangCorrect(" minutes and "," minutos e ") + idleTime % 60 +
+        retLangCorrect(" seconds"," segundos");
         if(idleTime>5)
-info(retLangCorrect("You stayed out ","Estiveste fora ","你离开游戏 ") + string + retLangCorrect(" and won "," e ganhaste "," ,赚取了 ") +toMoney(gains));
+info(retLangCorrect("You stayed out ","Estiveste fora ") + string + retLangCorrect(" and won "," e ganhaste ") +toMoney(gains));
 
   }
 }
 }
 function load() {
+
     if (localStorage.getItem("a"))
         bitcoins = Number(localStorage.getItem("a"));
     else
@@ -536,9 +531,7 @@ for (var i = 0; i < app.name.length; i++) {
   changeInvestorsTop();
   bitcoins = 10;
   totalbitcoins = 10;
-  for (var i = 0; i < average.length; i++) {
-    average[i]=10;
-  }
+  average=[];
   save();
 }
 function createSound(type) {
@@ -574,26 +567,19 @@ if(sound){
     }
   }
 function language(a){
-    document.getElementById('eng').className ="lang inactive";
-    document.getElementById('eng1').className ="lang inactive";
+if(lang=="eng" && a==2){
+  document.getElementById('pt').className ="lang active";
+  document.getElementById('pt1').className ="lang active";
+  document.getElementById('eng').className ="lang inactive";
+  document.getElementById('eng1').className ="lang inactive";
+  lang="pt";changeLanguage();
+}
+else if(lang=="pt" && a==1){
     document.getElementById('pt').className ="lang inactive";
     document.getElementById('pt1').className ="lang inactive";
-    document.getElementById('cn').className ="lang inactive";
-    document.getElementById('cn1').className ="lang inactive";
-if(a==1){
     document.getElementById('eng').className ="lang active";
     document.getElementById('eng1').className ="lang active";
     lang="eng";changeLanguage();
-}
-if(a==2){
-  document.getElementById('pt').className ="lang active";
-  document.getElementById('pt1').className ="lang active";
-  lang="pt";changeLanguage();
-}
-if(a==3){
-  document.getElementById('cn').className ="lang active";
-  document.getElementById('cn1').className ="lang active";
-  lang="cn";changeLanguage();
 }
 app.updateAllInfoApp();
 atualizaHardPerc();
@@ -635,9 +621,9 @@ function changeLanguage(){
       document.getElementById('raminfo').innerHTML = "RAM is where the data that is needed to run an app is stored.";
       document.getElementById('hardinfo').innerHTML = "The hard drive is where all data (billions of 1's and 0's) are stored.";
       document.getElementById('motherinfo').innerHTML = "The Motherboard is the control center,<br>where all the components of the computer are connected.";
-      document.getElementById('moregames').getElementsByTagName('h2')[0].innerHTML ="More games by MetalStar and Veslasoft";
+      document.getElementById('moregames').getElementsByTagName('h2')[0].innerHTML ="Games in development<br><a href='http://www.lx-games.com'>lx-games.com</a>";
   }
-  if(lang=="pt"){
+  else if(lang=="pt"){
     document.getElementById('content').getElementsByTagName('h3')[0].innerHTML = "Jogar";
     document.getElementById('osup').getElementsByTagName('h4')[0].innerHTML = "MELHORAR";
     document.getElementById('reset').innerHTML = "Formatar";
@@ -671,45 +657,7 @@ function changeLanguage(){
       document.getElementById('raminfo').innerHTML = "A RAM é onde estão guardados os dados que são necessários para a execução de uma app.";
       document.getElementById('hardinfo').innerHTML = "O disco rígido é onde todos os dados (bilhões de 1's e 0's) são armazenados.";
       document.getElementById('motherinfo').innerHTML = "A Motherboard é o centro de controle,<br>onde estão conectados todos os componentes do computador.";
-      document.getElementById('moregames').getElementsByTagName('h2')[0].innerHTML ="Mais jogos de MetalStar e Veslasoft";
-  }
-  if(lang=="cn"){
-    document.getElementById('content').getElementsByTagName('h3')[0].innerHTML = "开始";
-    document.getElementById('config').getElementsByTagName('h3')[0].innerHTML = "技术特点减少需求(OS and apps)";
-    document.getElementById('osup').getElementsByTagName('h4')[0].innerHTML = "升级";
-    document.getElementById('reset').innerHTML = "重置";
-      document.getElementsByTagName('li')[0].innerHTML = "数量";
-      document.getElementsByTagName('li')[4].innerHTML = "容量";
-      document.getElementsByTagName('li')[8].innerHTML = "支持的操作系统";
-      document.getElementsByTagName('li')[12].innerHTML = "核心数";
-      document.getElementsByTagName('li')[16].innerHTML = "频率";
-      document.getElementsByTagName('li')[20].innerHTML = "数量";
-      document.getElementsByTagName('li')[24].innerHTML = "容量";
-
-      document.getElementsByTagName('li')[3].innerHTML = "升级";
-      document.getElementsByTagName('li')[7].innerHTML = "升级";
-      document.getElementsByTagName('li')[11].innerHTML = "升级";
-      document.getElementsByTagName('li')[15].innerHTML = "升级";
-      document.getElementsByTagName('li')[19].innerHTML = "升级";
-      document.getElementsByTagName('li')[23].innerHTML = "升级";
-      document.getElementsByTagName('li')[27].innerHTML = "升级";
-      if(document.getElementById('infounins')!=null)
-      document.getElementById('infounins').innerHTML = "卸载";
-      if(document.getElementById('install')!=null)
-      document.getElementById('install').innerHTML = "安装";
-      for(var i = 0; i<=app.name.length;i++){
-        if(app.installed[i])
-      document.getElementById('unins'+i).setAttribute("onclick", "confirmation('你真的希望卸载 " + app.name[i] + "?','app.uninstall(" + i + ")' ),app.correctRun(" + i + ");");
-      }
-
-      document.getElementById('expimpdiv').getElementsByTagName('h4')[0].innerHTML = "To export, click the text above and copy (ctrl-c). To import, click the text, paste (ctrl-v) your exported data and click on import.";
-      document.getElementById('socialsbut').innerHTML = "社交网络";
-      document.getElementById('expimpbut').innerHTML = "导出/导入 存档";
-      document.getElementById('cpuinfo').innerHTML = "CPU是计算机的大脑。<br>它负责数学运算和逻辑问题。";
-      document.getElementById('raminfo').innerHTML = "内存是运行应用程序所需的数据的存储区。";
-      document.getElementById('hardinfo').innerHTML = "硬盘是所有数据（无数的0和1）存储容器。";
-      document.getElementById('motherinfo').innerHTML = "主板是控制中心，计算机的所有组件都连接在一起。";
-      document.getElementById('moregames').getElementsByTagName('h2')[0].innerHTML ="More games by MetalStar and Veslasoft";
+      document.getElementById('moregames').getElementsByTagName('h2')[0].innerHTML ="Jogos em desenvolvimento<br><a href='http://www.lx-games.com'>lx-games.com</a>";
   }
   changeInvestorsTop();
 }
