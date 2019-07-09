@@ -243,7 +243,7 @@ var cnRegReplace = new Map([
     [/^([\d\.]+)K\$ per run$/, '\$$1K 每次运行'],
     [/^([\d\.]+)M\$ per run$/, '\$$1M 每次运行'],
 	[/^Average:([\d\.]+)\$$/, '平均:\$$1'],
-	[/^Per second: ([\d\.]+)K\$$/, '每秒: $1K\$$1'],
+	[/^Per second: ([\d\.]+)K\$$/, '每秒: $1K\$'],
     [/^Average:([\d\.]+)K\$$/, '平均:\$$1K'],
 	[/^On average ([\d\.]+)M\$ per second$/, '平均每秒\$$1M'],
 	[/^On average ([\d\.]+)K\$ per second$/, '平均每秒\$$1K'],
