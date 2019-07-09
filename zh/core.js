@@ -58,11 +58,11 @@ var cnItems = {
     'Tip: Upgrade Hard Drive': '提示：升级硬盘',
     'Uninstall': '卸载',
     'Your computer need more memory to install this app': '您的计算机需要更多内存来安装此应用程序',
-    'Idle run': '空闲运行',
+    'Idle run': '放置运行',
     'loseRar': '压缩包',
     'Landy Crush': '兰迪粉碎',
     'Limon Tools': '利蒙工具',
-    'Max idle level achieved for this app': '此应用程序达到的最大空闲级别',
+    'Max idle level achieved for this app': '此应用程序达到的最大放置级别',
     'Mcoffee AntiVirus': '麦考菲杀毒软件',
     'Pung': '钱包',
     'Wurd': '单词',
@@ -248,7 +248,7 @@ var cnRegReplace = new Map([
     [/^Average:([\d\.]+)K\$$/, '平均:\$ $1K'],
 	[/^On average ([\d\.]+)M\$ per second$/, '平均每秒\$ $1M'],
 	[/^On average ([\d\.]+)K\$ per second$/, '平均每秒\$ $1K'],
-	[/^(\d+) runs to next idle level$/, '还有$1次运行到下一个空闲等级'],
+	[/^(\d+) runs to next idle level$/, '还有$1次运行到下一个放置等级'],
 	[/^Next format you will earn (\d+) investors to your computer$/, '下一种格式，您将获得$1位投资者到您的计算机'],
 
 ]);
