@@ -233,6 +233,7 @@ var cnRegReplace = new Map([
 	[/^Tutorial (\d+)\/$/, '教程 $1/'],
 	[/^You stayed out (\d+) seconds and won ([\d\.]+)\$$/, '你离开了$1秒，得到了$2美元'],
 	[/^You stayed out (\d+) seconds and won ([\d\.]+)M\$$/, '你离开了$1秒，得到了$2M美元'],
+	[/^You stayed out (\d+) minutes and (\d+) seconds and won ([\d\.]+)M\$$/, '你离开了$1分$2秒，得到了$3M美元'],
 	[/^(\d+)kB free of$/, '$1kB 空闲/'],
     [/^([\d\.]+)GB free of$/, '$1GkB 空闲/'],
     [/^(\d+)kHz free of (\d+)kHz$/, '$1kHz 空闲 / $2kHz'],
