@@ -37,11 +37,12 @@ body {
 
 .content {
     position: relative;
-    height: 500px;
-    margin: 0px auto 0px auto;
-    width: 890px;
+    height: 100vh;
+    margin: 0 auto;
+    width: 100%;
     z-index: 0;
     background: white;
+    overflow: hidden;
 }
 
 #intro{
@@ -51,6 +52,8 @@ body {
   height: 100%;
   position: absolute;
   background: #333;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
   transition: 0.4s;
   z-index: 6;
 }
@@ -85,6 +88,8 @@ body {
   left: 37%;
   top: 335px;
   width: 26%;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
   transition: 0.2s;
 }
 #intro h3:hover{
@@ -111,6 +116,8 @@ body {
   border: 1px solid #ccc;
   background: white;
   line-height: 30px;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
   transition: 0.2s;
 }
 .active{
@@ -134,6 +141,8 @@ color: #e0e0e0;
   border: 1px solid #ccc;
   background: white;
   left: 37%;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
   transition: 0.2s;
 }
 #reset{
@@ -178,6 +187,8 @@ color: #e0e0e0;
     text-align: center;
     font-weight: bold;
     cursor: pointer;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
     transition: 0.2s;
 }
 .fa-refresh{
@@ -194,6 +205,8 @@ color: #e0e0e0;
     color: #333;
     line-height: 33px;
     cursor: pointer;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
     transition: 0.2s;
 
 }
@@ -223,6 +236,8 @@ color: #e0e0e0;
 h2 a{
   color: #3b5998;
   text-decoration: none;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
   transition: 0.2s;
 }
 h2 a:hover{
@@ -267,6 +282,8 @@ h2 a:hover{
   height: 470px;
   position: absolute;
   background: #333;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
   transition: 0.4s;
   font-weight: bold;
   z-index: 5;
@@ -309,6 +326,8 @@ h2.topbarright{
   border-radius: 2px;
   border: 2px solid white;
   height: 20px;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
   transition: 0.2s;
   cursor: pointer;
 }
@@ -340,6 +359,8 @@ h2.topbarright:nth-child(2){
 }
 #topbar .fa-bolt{
   cursor: pointer;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
   transition: 0.4s;
 }
 #topbar .fa-bolt:hover{
@@ -360,7 +381,8 @@ h2.topbarright:nth-child(2){
   left: 0;
   width: 50%;
   height: 469px;
-  bottom: 0;
+/*  bottom: 0;*/
+    top: 30px;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -371,7 +393,8 @@ h2.topbarright:nth-child(2){
   background-color: #e0e0e0;
   left: 0;
   height: 40px;
-  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+          box-shadow: 0 1px 2px rgba(0,0,0,.1);
 }
 .hardwareBut h1{
   color: #333;
@@ -420,12 +443,18 @@ h2.topbarright:nth-child(2){
   width: 140px;
   z-index: 1;
   border: 1px solid #ccc;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
   transition: 0.4s;
 }
 .hardusage{
 z-index: 2;
+-webkit-transition: 0.2s;
+-o-transition: 0.2s;
 transition: 0.2s;
-transform: translate(1px,1px);
+-webkit-transform: translate(1px,1px);
+    -ms-transform: translate(1px,1px);
+        transform: translate(1px,1px);
 }
 .free{
   position: absolute;
@@ -444,6 +473,8 @@ transform: translate(1px,1px);
     margin: 0;
     left: 0;
     cursor: default;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
     transition: 0.2s;
     overflow: hidden;
 }
@@ -464,6 +495,8 @@ transform: translate(1px,1px);
   margin: 0;
   color: #333;
   font-size: 13px;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
   transition: 0.4s;
   font-weight: bold;
 }
@@ -483,7 +516,8 @@ transform: translate(1px,1px);
   right: 0;
   width: 50%;
   height: 469px;
-  bottom: 0;
+/*  bottom: 0;*/
+    top: 30px;
   overflow-y: hidden;
   overflow-x: hidden;
 }
@@ -495,7 +529,8 @@ transform: translate(1px,1px);
   color: #333;
   font-size: 16px;
   background-color: #e0e0e0;
-  box-shadow: 0 1px 2px rgba(0,0,0,.1)
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+          box-shadow: 0 1px 2px rgba(0,0,0,.1)
 }
 #OS, .program , .backgroundprog{
   border-top: 1px solid white;
@@ -536,6 +571,8 @@ transform: translate(1px,1px);
   color: #333;
   text-shadow: 0px 0px 3px #e0e0e0;
   opacity: 0;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
   transition: 0.4s;
   z-index: 2;
 }
@@ -562,6 +599,8 @@ transform: translate(1px,1px);
   margin: 0;
   color: #333;
   font-size: 13px;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
   transition: 0.2s;
   border: 2px solid #e0e0e0;
   border-radius: 2px;
@@ -582,6 +621,8 @@ transform: translate(1px,1px);
   color: #333;
   border: 2px solid #e0e0e0;
   font-size: 13px;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
   transition: 0.4s;
   border-radius: 1px;
   cursor: pointer;
@@ -595,9 +636,13 @@ border: 2px solid #00ff19;
   border-radius: 100%;
   background: white;
   opacity: 0.6;
+  background: -webkit-radial-gradient(circle, rgba(140, 140, 140, 0.8),rgba(140, 140, 140, 1));
+  background: -o-radial-gradient(circle, rgba(140, 140, 140, 0.8),rgba(140, 140, 140, 1));
   background: radial-gradient(circle, rgba(140, 140, 140, 0.8),rgba(140, 140, 140, 1));
   width: 30px;
   height: 30px;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
   transition: 0.4s;
 }
 .animback{
@@ -606,6 +651,8 @@ border: 2px solid #00ff19;
   left: 0;
   width: 100%;
   height: 100%;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
   transition: 0.2s;
 }
 .iconapp{
@@ -627,6 +674,8 @@ top: 0;
   padding: 0;
   opacity: 0.5;
   color: #333;
+  -webkit-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
   transition: opacity 0.2s;
   text-transform: capitalize;
 }
@@ -649,6 +698,8 @@ top: 0;
 .program .fa.top{
   z-index: 2;
 opacity: 0.2;
+-webkit-transition: 0.2s;
+-o-transition: 0.2s;
 transition: 0.2s;
 }
 .program i.top{
@@ -673,6 +724,8 @@ transition: 0.2s;
   opacity: 1;
   padding: 6px;
   font-family: arial;
+  -webkit-transition: opacity 0.4s;
+  -o-transition: opacity 0.4s;
   transition: opacity 0.4s;
   z-index: 4;
 }
@@ -702,6 +755,8 @@ transition: 0.2s;
   top: 0;
   background: rgb(140,140,140);
   height: 4%;
+  -webkit-transition: 0.1s;
+  -o-transition: 0.1s;
   transition: 0.1s;
 }
 .programinfo{
@@ -712,6 +767,8 @@ transition: 0.2s;
   height: 100%;
   opacity: 0;
   background-color: white;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
   transition: 0.4s;
   z-index: 1;
 }
@@ -728,6 +785,8 @@ transition: 0.2s;
     margin: 0 0 0 4px;
     line-height: 18px;
     font-size: 11px;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
     transition: 0.4s;
     opacity: 0;
     text-align: left;
@@ -753,6 +812,8 @@ transition: 0.2s;
   margin: 0;
   color: #333;
   font-size: 13px;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
   transition: 0.2s;
 }
 img.powerrequired{
@@ -764,13 +825,19 @@ img.powerrequired{
   position: absolute;
   z-index: 3;
   border: 1px solid #e0e0e0;
-  box-shadow: 3px 3px 0px #333;
+  -webkit-box-shadow: 3px 3px 0px #333;
+          box-shadow: 3px 3px 0px #333;
   border-radius: 2px;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
 .info:hover,.tutorial:hover{
-box-shadow: 2px 2px 0px #333;
-transform: translate(1px,1px);
+-webkit-box-shadow: 2px 2px 0px #333;
+        box-shadow: 2px 2px 0px #333;
+-webkit-transform: translate(1px,1px);
+    -ms-transform: translate(1px,1px);
+        transform: translate(1px,1px);
 }
 .info h4,.tutorial h4,.tutorial h2{
 color: #e0e0e0;
@@ -934,6 +1001,8 @@ i.close:hover{
     font-size: 12px;
     color: #333;
     cursor: pointer;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
     transition: 0.2s;
 }
 #hardware .fa-info-circle:hover{
