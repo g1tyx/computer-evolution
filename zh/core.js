@@ -234,6 +234,7 @@ var cnRegReplace = new Map([
 	[/^You stayed out (\d+) seconds and won ([\d\.]+)\$$/, '你离开了$1秒，得到了$2 \$'],
 	[/^You stayed out (\d+) seconds and won ([\d\.]+)M\$$/, '你离开了$1秒，得到了$2M \$'],
 	[/^You stayed out (\d+) minutes and (\d+) seconds and won ([\d\.]+)M\$$/, '你离开了$1分$2秒，得到了$3M美元'],
+	[/^You stayed out (\d+) hours (\d+) minutes and (\d+) seconds and won ([\d\.]+)\$$/, '你离开了$1小时$2分$3秒，得到了$4M \$'],
 	[/^(\d+)kB free of$/, '$1kB 空闲/'],
     [/^([\d\.]+)GB free of$/, '$1GkB 空闲/'],
     [/^(\d+)kHz free of (\d+)kHz$/, '$1kHz 空闲 / $2kHz'],
